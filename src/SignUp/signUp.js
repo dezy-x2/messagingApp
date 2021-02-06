@@ -33,11 +33,11 @@ class SignUp extends React.Component {
     render() {
         return (
             <div>
-                <form>
-                    <input type="text" value={this.state.username} onChange={this.handleUsernameChange} placeholder="Username" />
-                    <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password" />
+                <form className="form" >
+                    <input type="text" value={this.state.username} onChange={this.handleUsernameChange} placeholder="Username" className="username" />
+                    <input type="password" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password" className="password" />
                 </form>
-                <button onClick={this.handleSignUp} >Sign Up</button>
+                <button onClick={this.handleSignUp} className="submit" >Sign Up</button>
             </div>
         )
     }

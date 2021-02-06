@@ -31,7 +31,6 @@ class App extends React.Component {
     } else {
       this.setState({completed: true, message: "Something went wrong"})
     }
-    
   }
 
   render() {
@@ -40,10 +39,10 @@ class App extends React.Component {
         <header className="App-header">
           <h1 className="app-title">Secure Messaging</h1>
           { !this.state.completed && <button className="log-in" onClick={this.logInHandler}>Log In</button>}
-          { !this.state.completed && <button className="sign-up" onClick={this.signUpHandler}>Sign Up</button> }
+          { !this.state.completed && <button className="log-in" id="sign-up" onClick={this.signUpHandler}>Sign Up</button> }
           {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} />}
           {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} />}
-          {this.state.completed && <p>{this.state.message}</p>}
+          {this.state.completed && <p className="message" >{this.state.message}</p>}
         </header>
       </div>
     );

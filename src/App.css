@@ -1,18 +1,58 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* flex-direction: column;
+  align-items: center; */
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  position: relative;
 }
 
-.sign-in {
-  background-color: white;
+.app-title {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.log-in {
+  /* min-height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 80px;
+  position: absolute;
+  top: 50%;
+  left: 47.4%;
+  margin: -10px 0 0 -40px;
+}
+
+#sign-up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 80px;
+  position: absolute;
+  top: 50%;
+  left: 52.6%;
+  margin: -10px 0 0 -40px;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 150px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin: -10px 0 0 -75px;
 }
