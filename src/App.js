@@ -2,6 +2,7 @@ import './App.css';
 import React from "react";
 import LogIn from "./LogIn/logIn.js";
 import SignUp from "./SignUp/signUp.js";
+import HomePage from "./Homepage/homepage.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,25 +29,23 @@ class App extends React.Component {
   completedFormHandler = (bool) => {
     if (bool) {
       this.setState({completed: true, signUp: false, logIn: false})
-    } else {
-      this.setState({completed: true, message: "Something went wrong"})
     }
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        {!this.state.completed && <header className="App-header">
           <h1 className="app-title">Secure Messaging</h1>
-          { !this.state.completed && <button className="log-in" onClick={this.logInHandler}>Log In</button>}
-          { !this.state.completed && <button className="log-in" id="sign-up" onClick={this.signUpHandler}>Sign Up</button> }
+          <button className="log-in" onClick={this.logInHandler}>Log In</button>
+          <button className="log-in" id="sign-up" onClick={this.signUpHandler}>Sign Up</button>
           {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} />}
           {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} />}
-          {this.state.completed && <p className="message" >{this.state.message}</p>}
-        </header>
+        </header>}
+        {this.state.completed && <HomePage />}
       </div>
     );
   }
 }
-
+//<p className="message" >{this.state.message}</p>
 export default App;

@@ -19,12 +19,20 @@
 
 .form {
     display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20px;
-  width: 150px;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  margin: -10px 0 0 -75px;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 150px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    margin: -10px 0 0 -75px;
+}
+
+input[type="text"] {
+    color: white;
+}
+
+input[type="password"] {
+    color: white;
 }

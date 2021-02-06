@@ -28,3 +28,11 @@
   left: 50%;
   margin: -10px 0 0 -75px;
 }
+
+input[type="text"] {
+    color: white;
+}
+
+input[type="password"] {
+    color: white;
+}

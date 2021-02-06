@@ -23,6 +23,7 @@ class LogIn extends React.Component {
 
     handleLogIn = () => {
         if (this.state.username !== "" && this.state.password !== "") {
+            this.setState({username: "", password: ""})
             this.props.completedFormHandler(true);
         } else {
             this.props.completedFormHandler(false);

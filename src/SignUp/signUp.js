@@ -23,6 +23,7 @@ class SignUp extends React.Component {
 
     handleSignUp = () => {
         if (this.state.username !== "" && this.state.password !== "") {
+            this.setState({username: "", password: ""});
             this.props.completedFormHandler(true);
         } else {
             this.props.completedFormHandler(false);
