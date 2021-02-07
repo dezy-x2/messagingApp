@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       logIn: false,
       signUp: false,
-      completed: false,
+      completed: null,
       message: "You're in!"
     }
     this.logInHandler = this.logInHandler.bind(this);

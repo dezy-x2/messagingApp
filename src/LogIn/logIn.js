@@ -11,6 +11,8 @@ class LogIn extends React.Component {
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleLogIn = this.handleLogIn.bind(this);
+        this.handleApiResponse = this.handleApiResponse.bind(this);
+        this.sendToApi = this.sendToApi.bind(this);
     }
 
     handleUsernameChange = (event) => {
@@ -23,12 +25,28 @@ class LogIn extends React.Component {
 
     handleLogIn = () => {
         if (this.state.username !== "" && this.state.password !== "") {
-            this.setState({username: "", password: ""})
-            this.props.completedFormHandler(true);
+            this.sendToApi();
         } else {
             this.props.completedFormHandler(false);
         }
-        
+    }
+
+    async sendToApi() {
+        const username = this.state.username;
+        const password = this.state.password;
+        const response = await fetch(`http://localhost:9000/acc/fetch/${username}/${password}`);
+        const status = await response.status;
+        this.handleApiResponse(status);
+    }
+
+    handleApiResponse(status) {
+        if (199 < status && status < 300) {
+            console.log(status);
+            this.setState({username: "", password: ""});
+            this.props.completedFormHandler(true);
+        } else {
+            this.props.completedFormHandler(false)
+        }
     }
 
     render() {

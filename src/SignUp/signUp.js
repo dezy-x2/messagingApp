@@ -11,6 +11,8 @@ class SignUp extends React.Component {
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSignUp = this.handleSignUp.bind(this);
+        this.sendToApi = this.sendToApi.bind(this);
+        this.handleApiResponse = this.handleApiResponse.bind(this);
     }
 
     handleUsernameChange = (event) => {
@@ -23,12 +25,33 @@ class SignUp extends React.Component {
 
     handleSignUp = () => {
         if (this.state.username !== "" && this.state.password !== "") {
+            this.sendToApi();
+        } else {
+            this.props.completedFormHandler(false);
+        }
+        
+    }
+
+    async sendToApi() {
+        const response = await fetch("http://localhost:9000/acc/crt", {
+            method: "POST",
+            body: JSON.stringify({"username": this.state.username, "password": this.state.password}), 
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const status = await response.status;
+        this.handleApiResponse(status);
+
+    }
+
+    handleApiResponse(status){
+        if (199 < status && status < 300) {
             this.setState({username: "", password: ""});
             this.props.completedFormHandler(true);
         } else {
             this.props.completedFormHandler(false);
         }
-        
     }
 
     render() {
