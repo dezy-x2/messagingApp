@@ -51,7 +51,7 @@ app.post("/acc/crt", (req, res, next) => {
             "id": id
         }
     );
-    return res.send("Successfuly created");
+    return res.send(JSON.stringify(id));
 })
 
 app.get("/acc/fetch/:username/:password", (req, res, next) => {
@@ -66,7 +66,7 @@ app.get("/acc/fetch/:username/:password", (req, res, next) => {
     for (let user of database) {
         if (user.username === username) {
             if (user.password === password) {
-                res.send("Success");
+                res.send(JSON.stringify(user.id));
                 return;
             }
         }

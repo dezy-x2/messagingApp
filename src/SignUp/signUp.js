@@ -41,6 +41,8 @@ class SignUp extends React.Component {
             },
         });
         const status = await response.status;
+        const userId = await response.text();
+        this.props.getUserId(userId);
         this.handleApiResponse(status);
 
     }

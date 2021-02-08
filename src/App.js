@@ -11,11 +11,13 @@ class App extends React.Component {
       logIn: false,
       signUp: false,
       completed: null,
-      message: "You're in!"
+      message: "You're in!",
+      userId: null,
     }
     this.logInHandler = this.logInHandler.bind(this);
     this.signUpHandler = this.signUpHandler.bind(this);
     this.completedFormHandler = this.completedFormHandler.bind(this);
+    this.getUserId = this.getUserId.bind(this);
   }
 
   logInHandler = () => {
@@ -32,6 +34,10 @@ class App extends React.Component {
     }
   }
 
+  getUserId = (id) => {
+    this.setState({userId: id});
+  };
+
   render() {
     return (
       <div className="App">
@@ -39,10 +45,10 @@ class App extends React.Component {
           <h1 className="app-title">Secure Messaging</h1>
           <button className="log-in" onClick={this.logInHandler}>Log In</button>
           <button className="log-in" id="sign-up" onClick={this.signUpHandler}>Sign Up</button>
-          {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} />}
-          {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} />}
+          {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
+          {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
         </header>}
-        {this.state.completed && <HomePage />}
+        {this.state.completed && <HomePage userId={this.state.userId} />}
       </div>
     );
   }
