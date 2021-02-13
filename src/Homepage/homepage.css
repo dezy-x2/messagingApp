@@ -35,3 +35,30 @@
     left: 75%;
     margin: -12.5px 0 0 -20px;
 }
+
+.recepient {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 120px;
+    position: absolute;
+    top: 84%;
+    left: 22%;
+    margin: -12.5px 0 0 -60px;
+}
+
+.error {
+    color: darkred;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 1000px;
+    position: absolute;
+    top: 13%;
+    left: 50%;
+    margin: -12.5px 0 0 -500px;
+}

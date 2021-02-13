@@ -74,6 +74,40 @@ app.get("/acc/fetch/:username/:password", (req, res, next) => {
     res.status(500).send();
 })
 
+app.post("/messages/send", (req, res, next) => {
+    const id = req.body.id;
+    const recepient = req.body.recepient;
+    const message = req.body.message;
+    let completed = "";
+    for (let user of database) {
+        if (user.id == id) {
+            user.messages["outMessages"].push(message);
+            completed += "comp";
+        };
+    };
+
+    for (let user of database) {
+        if (user.username === recepient) {
+            user.messages["inMessages"].push(message);
+            completed += "leted";
+        };
+    };
+
+    if (completed === "completed") {
+        res.send("Success");
+        console.log(database);
+    } else if (completed === "comp") {
+        console.log(database);
+        res.status(400).send("That user does not exist");
+    } else if (completed === "leted") {
+        console.log(database);
+        res.status(500).send("User id invalid");
+    } else {
+        console.log(database);
+        res.status(400).send("really bad");
+    }
+})
+
 app.listen(9000, () => {
     console.log("Listening on port 9000");
     console.log(database);

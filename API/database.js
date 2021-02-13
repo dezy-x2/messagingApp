@@ -8,6 +8,15 @@ const database = [
         },
         "id": 1234,
     },
+    {
+        "password": "daniel",
+        "username": "desmond",
+        "messages": {
+            "outMessages": [],
+            "inMessages": [], 
+        },
+        "id": 5678,
+    },
 ];
 
 module.exports = database;
