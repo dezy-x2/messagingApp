@@ -32,7 +32,7 @@ class Homepage extends React.Component {
     sendToApi = async () => {
         const response = await fetch("http://localhost:9000/messages/send", {
             method: "POST",
-            body: JSON.stringify({"id": this.props.userId, "message": this.state.message}), 
+            body: JSON.stringify({"id": this.props.userId, "message": this.state.message, "recepient": this.state.recepient}), 
             headers: {
                 "Content-Type": "application/json"
             },

@@ -83,6 +83,7 @@ app.post("/messages/send", (req, res, next) => {
         if (user.id == id) {
             user.messages["outMessages"].push(message);
             completed += "comp";
+            console.log(user.messages);
         };
     };
 
@@ -90,6 +91,7 @@ app.post("/messages/send", (req, res, next) => {
         if (user.username === recepient) {
             user.messages["inMessages"].push(message);
             completed += "leted";
+            console.log(user.messages);
         };
     };
 
