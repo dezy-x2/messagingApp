@@ -37,7 +37,9 @@ class LogIn extends React.Component {
         const response = await fetch(`http://localhost:9000/acc/fetch/${username}/${password}`);
         const status = await response.status;
         const userId = await response.text();
-        this.props.getUserId(userId);
+        // console.log(JSON.parse(userId));
+        // console.log(JSON.parse(userId.id));
+        this.props.getUserId(JSON.parse(userId));
         this.handleApiResponse(status);
     }
 

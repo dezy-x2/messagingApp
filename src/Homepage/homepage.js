@@ -60,7 +60,7 @@ class Homepage extends React.Component {
         return (
             <div>
                 <body className="homepage-head">
-                    <h1>Welcome to your homepage {this.props.userId}</h1>
+                    <h1>Welcome to your homepage {this.props.userId.id}</h1>
                     <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
                     <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>
                     <button className="send" onClick={this.handleSendPress} >Send</button>

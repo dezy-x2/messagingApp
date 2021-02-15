@@ -66,7 +66,8 @@ app.get("/acc/fetch/:username/:password", (req, res, next) => {
     for (let user of database) {
         if (user.username === username) {
             if (user.password === password) {
-                res.send(JSON.stringify(user.id));
+                res.send(user);
+                // res.send(JSON.stringify({"userOutMessages": user.messages.outMessages, "userInMessages": user.messages.inMessages, "userId": user.id}));
                 return;
             }
         }
@@ -78,12 +79,14 @@ app.post("/messages/send", (req, res, next) => {
     const id = req.body.id;
     const recepient = req.body.recepient;
     const message = req.body.message;
+    let sender = null;
     let completed = "";
     for (let user of database) {
         if (user.id == id) {
             user.messages["outMessages"].push(message);
             completed += "comp";
             console.log(user.messages);
+            sender = user;
         };
     };
 
@@ -96,7 +99,7 @@ app.post("/messages/send", (req, res, next) => {
     };
 
     if (completed === "completed") {
-        res.send("Success");
+        res.send({"userOutMessages": sender.messages.outMessages, "userInMessages": sender.messages.inMessages, "userId": sender.id});
         console.log(database);
     } else if (completed === "comp") {
         console.log(database);
