@@ -58,7 +58,7 @@ app.get("/acc/fetch/:username/:password", (req, res, next) => {
     const username = req.params.username;
     const password = req.params.password;
     if (username === "test" && password === "test") {
-        res.send("Test succesful");
+        res.send({"id": "8900"});
         console.log("Test succesful");
         console.log(database);
         return;
@@ -67,7 +67,6 @@ app.get("/acc/fetch/:username/:password", (req, res, next) => {
         if (user.username === username) {
             if (user.password === password) {
                 res.send(user);
-                // res.send(JSON.stringify({"userOutMessages": user.messages.outMessages, "userInMessages": user.messages.inMessages, "userId": user.id}));
                 return;
             }
         }

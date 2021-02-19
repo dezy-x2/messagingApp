@@ -62,3 +62,36 @@
     left: 50%;
     margin: -12.5px 0 0 -500px;
 }
+
+.inMessageDisplay {
+    color: #00c;
+    top: 50%;
+    width:500px; 
+    left:0%; 
+    /* bottom: 0; */
+    position:absolute;
+    /* float: left; */
+}
+
+.outMessageDisplay {
+    color: #060;
+    top: 50%;
+    width:500px; 
+    right:0%; 
+    /* bottom: 0; */
+    position:absolute;
+}
+
+.messageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 550px;
+    width: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -275px 0 0 -500px;
+    border-style: dashed;
+    border-color: gold;
+}

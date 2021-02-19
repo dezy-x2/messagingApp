@@ -32,7 +32,7 @@ class Homepage extends React.Component {
     sendToApi = async () => {
         const response = await fetch("http://localhost:9000/messages/send", {
             method: "POST",
-            body: JSON.stringify({"id": this.props.userId, "message": this.state.message, "recepient": this.state.recepient}), 
+            body: JSON.stringify({"id": this.props.userId.id, "message": this.state.message, "recepient": this.state.recepient}), 
             headers: {
                 "Content-Type": "application/json"
             },
@@ -60,7 +60,11 @@ class Homepage extends React.Component {
         return (
             <div>
                 <body className="homepage-head">
-                    <h1>Welcome to your homepage {this.props.userId.id}</h1>
+                    <h1>Welcome to your homepage {this.props.userId.username}</h1>
+                    <div className="messageContainer">
+                        <h2 className="outMessageDisplay"> {this.props.userId.messages.outMessages} </h2>
+                        <h2 className="inMessageDisplay"> {this.props.userId.messages.inMessages} </h2>
+                    </div>
                     <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
                     <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>
                     <button className="send" onClick={this.handleSendPress} >Send</button>
