@@ -51,7 +51,15 @@ app.post("/acc/crt", (req, res, next) => {
             "id": id
         }
     );
-    return res.send(JSON.stringify(id));
+    return res.send({
+        "password": password,
+        "username": username,
+        "messages": {
+        "outMessages": [],
+        "inMessages": [],
+        },
+        "id": id
+    });
 })
 
 app.get("/acc/fetch/:username/:password", (req, res, next) => {
