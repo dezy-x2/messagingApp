@@ -65,8 +65,17 @@ class Homepage extends React.Component {
                 <body className="homepage-head">
                     <h1>Welcome to your homepage {this.state.user.username}</h1>
                     <div className="messageContainer">
-                        <h2 className="outMessageDisplay"> {this.state.user.messages.outMessages} </h2>
-                        <h2 className="inMessageDisplay"> {this.state.user.messages.inMessages} </h2>
+                        <ul className="outMessageDisplay">
+                            {this.state.user.messages.outMessages.map(item => {
+                                return <li> {item} </li>
+                            })}
+                        </ul>
+
+                        <ul className="inMessageDisplay" >
+                            {this.state.user.messages.inMessages.map(item => {
+                                return <li> {item} </li>
+                            })}
+                        </ul>
                     </div>
                     <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
                     <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>

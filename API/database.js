@@ -3,7 +3,7 @@ const database = [
         "password": "password",
         "username": "username",
         "messages": {
-        "outMessages": ["Whats up"],
+        "outMessages": ["Whats up", "plz word dude"],
         "inMessages": ["Nothing much"],
         },
         "id": 1234,
@@ -13,7 +13,7 @@ const database = [
         "username": "desmond",
         "messages": {
             "outMessages": ["Nothing much"],
-            "inMessages": ["Whats up"], 
+            "inMessages": ["Whats up", "plz word dude"], 
         },
         "id": 5678,
     },
