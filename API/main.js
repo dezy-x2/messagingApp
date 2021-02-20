@@ -98,7 +98,7 @@ app.post("/messages/send", (req, res, next) => {
     };
 
     if (completed === "completed") {
-        res.send({"userOutMessages": sender.messages.outMessages, "userInMessages": sender.messages.inMessages, "userId": sender.id});
+        res.send(sender);
         console.log(database);
     } else if (completed === "comp") {
         console.log(database);

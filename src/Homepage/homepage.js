@@ -8,6 +8,7 @@ class Homepage extends React.Component {
             message: "",
             recepient: "",
             error: "",
+            user: this.props.userId,
         };
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSendPress = this.handleSendPress.bind(this);
@@ -39,16 +40,18 @@ class Homepage extends React.Component {
         });
         const status = await response.status;
         const message = await response.text();
-        this.handleApiResp(status, message);
+        console.log(JSON.parse(message));
+        this.setState({user: JSON.parse(message)});
+        this.handleApiResp(status);
     }
 
-    handleApiResp = (status, message) => {
+    handleApiResp = (status) => {
         if (status === 200) {
             this.setState({message: ""});
         } else if (status === 400) {
-            this.setState({error: `ERROR: ${message}`})
+            this.setState({error: `ERROR: That user does not exist`})
         } else if (status === 500) {
-            this.setState({error: `ERROR: ${message}`})
+            this.setState({error: `ERROR: User id invalid`})
         }
     }
 
@@ -60,10 +63,10 @@ class Homepage extends React.Component {
         return (
             <div>
                 <body className="homepage-head">
-                    <h1>Welcome to your homepage {this.props.userId.username}</h1>
+                    <h1>Welcome to your homepage {this.state.user.username}</h1>
                     <div className="messageContainer">
-                        <h2 className="outMessageDisplay"> {this.props.userId.messages.outMessages} </h2>
-                        <h2 className="inMessageDisplay"> {this.props.userId.messages.inMessages} </h2>
+                        <h2 className="outMessageDisplay"> {this.state.user.messages.outMessages} </h2>
+                        <h2 className="inMessageDisplay"> {this.state.user.messages.inMessages} </h2>
                     </div>
                     <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
                     <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>

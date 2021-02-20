@@ -48,7 +48,7 @@ class App extends React.Component {
           {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
           {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
         </header>}
-        {this.state.completed && <HomePage userId={this.state.userId} />}
+        {this.state.completed && <HomePage userId={this.state.userId} completedFormHandler={this.completedFormHandler} />}
       </div>
     );
   }
