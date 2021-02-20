@@ -75,6 +75,14 @@ app.get("/acc/fetch/:username/:password", (req, res, next) => {
 })
 
 app.post("/messages/send", (req, res, next) => {
+    if (req.body.refresh) {
+        for (let user of database) {
+            if (user.id == req.body.id) {
+                res.send(user);
+                return;
+            };
+        };
+    }
     const id = req.body.id;
     const recepient = req.body.recepient;
     const message = req.body.message;

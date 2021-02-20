@@ -15,6 +15,7 @@ class Homepage extends React.Component {
         this.handleRecepientChange = this.handleRecepientChange.bind(this);
         this.sendToApi = this.sendToApi.bind(this);
         this.handleApiResp = this.handleApiResp.bind(this);
+        this.refreshMessages = this.refreshMessages.bind(this);
     }
 
     handleMessageChange = (event) => {
@@ -58,6 +59,20 @@ class Homepage extends React.Component {
     handleRecepientChange = (event) => {
         this.setState({recepient: event.target.value});
     };
+
+    refreshMessages = async () => {
+        const response = await fetch("http://localhost:9000/messages/send", {
+            method: "POST",
+            body: JSON.stringify({"id": this.props.userId.id, "refresh": true}), 
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const user = await response.text();
+        this.setState({user: JSON.parse(user)});
+    };
+
+    refresher = setInterval(this.refreshMessages, 3000);
 
     render() {
         return (
