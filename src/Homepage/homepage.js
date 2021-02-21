@@ -41,7 +41,7 @@ class Homepage extends React.Component {
         });
         const status = await response.status;
         const message = await response.text();
-        console.log(JSON.parse(message));
+        // console.log(JSON.parse(message));
         this.setState({user: JSON.parse(message)});
         this.handleApiResp(status);
     }
@@ -82,13 +82,13 @@ class Homepage extends React.Component {
                     <div className="messageContainer">
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
-                                return <li> {item} </li>
+                                return <li> {item[1]} </li>
                             })}
                         </ul>
 
                         <ul className="inMessageDisplay" >
                             {this.state.user.messages.inMessages.map(item => {
-                                return <li> {item} </li>
+                                return <li> {item[0]}: {item[1]} </li>
                             })}
                         </ul>
                     </div>

@@ -3,8 +3,8 @@ const database = [
         "password": "password",
         "username": "username",
         "messages": {
-        "outMessages": ["Whats up", "plz word dude"],
-        "inMessages": ["Nothing much"],
+        "outMessages": [[["username"], ["Whats up"]], [["username"], ["plz work dude"]]],
+        "inMessages": [[["desmond"], ["Nothing much"]]],
         },
         "id": 1234,
     },
@@ -12,8 +12,8 @@ const database = [
         "password": "daniel",
         "username": "desmond",
         "messages": {
-            "outMessages": ["Nothing much"],
-            "inMessages": ["Whats up", "plz word dude"], 
+            "outMessages": [[["desmond"], ["Nothing much"]]],
+            "inMessages": [[["username"], ["Whats up"]], [["username"], ["plz work dude"]]], 
         },
         "id": 5678,
     },

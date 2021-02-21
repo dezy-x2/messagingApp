@@ -98,7 +98,7 @@ app.post("/messages/send", (req, res, next) => {
     let completed = "";
     for (let user of database) {
         if (user.id == id) {
-            user.messages["outMessages"].push(message);
+            user.messages["outMessages"].push([[user.username], [message]]);
             completed += "comp";
             console.log(user.messages);
             sender = user;
@@ -107,7 +107,7 @@ app.post("/messages/send", (req, res, next) => {
 
     for (let user of database) {
         if (user.username === recepient) {
-            user.messages["inMessages"].push(message);
+            user.messages["inMessages"].push([[sender.username], [message]]);
             completed += "leted";
             console.log(user.messages);
         };

@@ -40,6 +40,7 @@ class LogIn extends React.Component {
         // console.log(JSON.parse(userId));
         // console.log(JSON.parse(userId.id));
         this.props.getUserId(JSON.parse(userId));
+        console.log(status, "HELLLOOOOO");
         this.handleApiResponse(status);
     }
 
