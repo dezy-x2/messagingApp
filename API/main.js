@@ -4,7 +4,9 @@ const cors = require("cors");
 const logger = require("morgan");
 const database = require("./database.js");
 const bodyParser = require("body-parser");
+const KeyGenerator = require("./cipherKeyGenerator.js");
 
+const keyGen = new KeyGenerator();
 app.use(cors());
 app.use(logger("dev"));
 app.use(bodyParser());
@@ -126,7 +128,13 @@ app.post("/messages/send", (req, res, next) => {
         console.log(database);
         res.status(400).send("really bad");
     }
-})
+});
+
+app.get("/cipherkey", (req, res, next) => {
+    let key = keyGen.keyGenerator();
+    res.send(key)
+    console.log(key);  console.log(req.body);
+});
 
 app.listen(9000, () => {
     console.log("Listening on port 9000");

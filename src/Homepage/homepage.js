@@ -1,5 +1,8 @@
 import React from "react";
 import "./homepage.css";
+import Cipher from "../cipher.js";
+
+let encrypter = new Cipher();
 
 class Homepage extends React.Component {
     constructor(props) {
@@ -32,9 +35,16 @@ class Homepage extends React.Component {
     }
 
     sendToApi = async () => {
+
+        const cipherKey = await fetch("http://localhost:9000/cipherkey");
+        const key = await cipherKey.text();
+        // console.log(key);
+        let encMessage = encrypter.encrypter(this.state.message, 2, key)
+        console.log(encMessage);
+
         const response = await fetch("http://localhost:9000/messages/send", {
             method: "POST",
-            body: JSON.stringify({"id": this.props.userId.id, "message": this.state.message, "recepient": this.state.recepient}), 
+            body: JSON.stringify({"id": this.props.userId.id, "message": encMessage, "recepient": this.state.recepient}), 
             headers: {
                 "Content-Type": "application/json"
             },
@@ -82,13 +92,13 @@ class Homepage extends React.Component {
                     <div className="messageContainer">
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
-                                return <li> {item[1]} </li>
+                                return <li> {encrypter.decrypter(item[1][0], 2, item[1][1])} </li>
                             })}
                         </ul>
 
                         <ul className="inMessageDisplay" >
                             {this.state.user.messages.inMessages.map(item => {
-                                return <li> {item[0]}: {item[1]} </li>
+                                return <li> {item[0]}: {encrypter.decrypter(item[1][0], 2, item[1][1])} </li>
                             })}
                         </ul>
                     </div>
