@@ -39,7 +39,7 @@ class Homepage extends React.Component {
         const cipherKey = await fetch("http://localhost:9000/cipherkey");
         const key = await cipherKey.text();
         // console.log(key);
-        let encMessage = encrypter.encrypter(this.state.message, 2, key)
+        let encMessage = encrypter.encrypter(this.state.message, 2, JSON.parse(key))
         console.log(encMessage);
 
         const response = await fetch("http://localhost:9000/messages/send", {
@@ -82,7 +82,7 @@ class Homepage extends React.Component {
         this.setState({user: JSON.parse(user)});
     };
 
-    refresher = setInterval(this.refreshMessages, 3000);
+    refresher = setInterval(this.refreshMessages, 30000);
 
     render() {
         return (
@@ -98,6 +98,7 @@ class Homepage extends React.Component {
 
                         <ul className="inMessageDisplay" >
                             {this.state.user.messages.inMessages.map(item => {
+                                console.log(item[1][0], "HELLOOOOOOOOO");
                                 return <li> {item[0]}: {encrypter.decrypter(item[1][0], 2, item[1][1])} </li>
                             })}
                         </ul>
