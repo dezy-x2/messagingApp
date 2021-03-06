@@ -5,6 +5,16 @@ const logger = require("morgan");
 const database = require("./database.js");
 const bodyParser = require("body-parser");
 const KeyGenerator = require("./cipherKeyGenerator.js");
+const { Client } = require("pg");
+
+const client = new Client({
+    user: 'danieldesmond',
+    host: 'localhost',
+    database: 'danieldesmond',
+    port: 5432
+});
+
+client.connect();
 
 const keyGen = new KeyGenerator();
 app.use(cors());
@@ -21,8 +31,15 @@ function generateId() {
     return id;
 }
 
-app.get("/", (req, res, next) => {
-    res.send(`Hello folks \n ${database}`);
+app.get("/", async (req, res, next) => {
+    const query = `SELECT * FROM users`;
+    try {
+        const dbres = await client.query(query);
+        res.send(`Hello folks \n ${dbres}`);
+    } catch(e) {
+        console.log(e)
+    }
+    
 });
 
 app.post("/acc/crt", (req, res, next) => {
