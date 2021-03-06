@@ -32,10 +32,11 @@ function generateId() {
 }
 
 app.get("/", async (req, res, next) => {
-    const query = `SELECT * FROM users`;
+    const query = `SELECT * FROM users, messages`;
     try {
         const dbres = await client.query(query);
-        res.send(`Hello folks \n ${dbres}`);
+        res.send(`Hello folks \n ${dbres.rows}`);
+        console.log(dbres.rows);
     } catch(e) {
         console.log(e)
     }
@@ -81,7 +82,7 @@ app.post("/acc/crt", (req, res, next) => {
     });
 })
 
-app.get("/acc/fetch/:username/:password", (req, res, next) => {
+app.get("/acc/fetch/:username/:password", async (req, res, next) => {
     const username = req.params.username;
     const password = req.params.password;
     if (username === "test" && password === "test") {
@@ -90,15 +91,37 @@ app.get("/acc/fetch/:username/:password", (req, res, next) => {
         console.log(database);
         return;
     }
-    for (let user of database) {
-        if (user.username === username) {
-            if (user.password === password) {
-                res.send(JSON.stringify(user));
-                return;
+    const authQuery = `SELECT * FROM users WHERE username = ${username} AND password = ${password}`
+    
+    try {
+        const dbres = await client.query(authQuery);
+        const id = dbres.rows[0].id
+        console.log(dbres.rows, "auth");
+        if (dbres.rowCount < 1) {
+            res.status(400).send();
+        } else {
+            try {
+                const idQuery = `SELECT * FROM messages WHERE user_id = ${id}`;
+                console.log(idQuery);
+                const idres = await client.query(idQuery);
+                console.log(idres.rows, "id")
+                res.send({
+                    "id": dbres.rows[0].id,
+                    "messages": {
+                        "outMessages": idres.rows[0].out_messages,
+                        "inMessages": idres.rows[0].in_messages
+                    }
+                });
+            } catch(e) {
+                console.log(e);
+                res.status(500).send();
             }
         }
+    } catch(e) {
+        console.log(e);
+        res.status(500).send();
     }
-    res.status(500).send();
+    
 })
 
 app.post("/messages/send", (req, res, next) => {
