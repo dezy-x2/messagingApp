@@ -58,6 +58,7 @@ class Homepage extends React.Component {
 
     handleApiResp = (status) => {
         if (status === 200) {
+            this.refreshMessages();
             this.setState({message: ""});
         } else if (status === 400) {
             this.setState({error: `ERROR: That user does not exist`})
@@ -92,14 +93,14 @@ class Homepage extends React.Component {
                     <div className="messageContainer">
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
-                                return <li> {encrypter.decrypter(item[1][0], 2, item[1][1])} </li>
+                                return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
                             })}
                         </ul>
 
                         <ul className="inMessageDisplay" >
                             {this.state.user.messages.inMessages.map(item => {
-                                console.log(item[1][0], "HELLOOOOOOOOO");
-                                return <li> {item[0]}: {encrypter.decrypter(item[1][0], 2, item[1][1])} </li>
+                                console.log(item[1], "HELLOOOOOOOOO");
+                                return <li> {item[0]}: {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
                             })}
                         </ul>
                     </div>

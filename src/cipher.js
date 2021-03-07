@@ -110,7 +110,7 @@ class Cipher {
       final = "";
     }
     console.log(`\n\n${starter}\n\n${keyList}\n\n${sentence}`)
-    return [starter, keyList];
+    return [starter, ...keyList];
   }
 
   decrypter(sentence, level = 1, keyList) {
