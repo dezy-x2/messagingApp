@@ -40,7 +40,7 @@ class Homepage extends React.Component {
         const key = await cipherKey.text();
         // console.log(key);
         let encMessage = encrypter.encrypter(this.state.message, 2, JSON.parse(key))
-        console.log(encMessage);
+        // console.log(encMessage);
 
         const response = await fetch("http://localhost:9000/messages/send", {
             method: "POST",
@@ -93,14 +93,21 @@ class Homepage extends React.Component {
                     <div className="messageContainer">
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
-                                return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
+                                console.log(item)
+                                if (item) {
+                                    return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
+                                } 
+                                return <li>hello sire</li>;
                             })}
                         </ul>
 
                         <ul className="inMessageDisplay" >
                             {this.state.user.messages.inMessages.map(item => {
-                                console.log(item[1], "HELLOOOOOOOOO");
-                                return <li> {item[0]}: {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
+                                // console.log(item, "HELLOOOOOOOOO");
+                                if (item) {
+                                    return <li> {item[0]}: {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
+                                }
+                                return;
                             })}
                         </ul>
                     </div>

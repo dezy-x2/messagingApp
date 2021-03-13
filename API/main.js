@@ -21,9 +21,10 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(bodyParser());
 
-function generateId() {
+async function generateId() {
     let id = Math.floor(Math.random() * 1000);
-    for (let user of database) {
+    const dbres = await client.query(`SELECT * FROM users`);
+    for (let user of dbres.rows) {
         if (user.id === id) {
             return generateId();
         }
@@ -43,40 +44,77 @@ app.get("/", async (req, res, next) => {
     
 });
 
-app.post("/acc/crt", (req, res, next) => {
+app.post("/acc/crt", async (req, res, next) => {
     console.log("got here")
     let username = req.body.username;
     let password = req.body.password;
-    let id = generateId();
-    if (username === "test" && password === "test") {
-        res.send("Test succesfult");
-        console.log("Test succesful");
-        console.log(database);
-        return;
+    let id = await generateId();
+
+    try{
+        console.log(username, password, id)
+        const userInsert = await client.query(`INSERT INTO users (username, password, id) VALUES ('${username}', '${password}', ${id})`);
+        console.log("now here")
+        const messageInsert = await client.query(`INSERT INTO messages (in_messages, out_messages, user_id) VALUES (ARRAY[ARRAY[NULL, NULL, 
+        NULL, NULL,NULL, NULL, NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL,NULL, NULL, NULL, NULL,
+        NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL,
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL,
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL]], 
+        ARRAY[ARRAY[NULL, NULL, 
+        NULL, NULL,NULL, NULL, NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL,NULL, NULL, NULL, NULL,
+        NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL,
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL,
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL,NULL, NULL, NULL, NULL, 
+        NULL, NULL, NULL, NULL]], ${id})`);
+    
+    } catch(e) {
+        console.log(e.stack);
+        return res.status(400).send("ERROR");
     }
-    for (let user of database) {
-        if (user.username === username) {
-            res.status(500).send();
-            return;
-        }
-    }
-    database.push(
-        {
-            "password": password,
-            "username": username,
-            "messages": {
-            "outMessages": [],
-            "inMessages": [],
-            },
-            "id": id
-        }
-    );
     return res.send({
         "password": password,
         "username": username,
         "messages": {
-        "outMessages": [],
-        "inMessages": [],
+        "outMessages": [[null, null, 
+            null, null,null, null, null, null, null, null, 
+            null, null, null,null, null, null, null,
+            null, null, null, null, null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null,
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null,
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null]],
+        "inMessages": [[null, null, 
+            null, null,null, null, null, null, null, null, 
+            null, null, null,null, null, null, null,
+            null, null, null, null, null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null,
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null,
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null,null, null, null, null, 
+            null, null, null, null]],
         },
         "id": id
     });
@@ -195,7 +233,7 @@ app.post("/messages/send", async(req, res, next) => {
         if (user.username === recepient) {
             console.log(sender, "SENDER");
             try{
-                const update = await client.query(`UPDATE messages SET in_messages = ARRAY_CAT(in_messages, ARRAY[${sender.username}, '${message[0]}', 
+                const update = await client.query(`UPDATE messages SET in_messages = ARRAY_CAT(in_messages, ARRAY['${sender.username}', '${message[0]}', 
                 '${message[1]}', '${message[2]}','${message[3]}', '${message[4]}', '${message[5]}', '${message[6]}', '${message[7]}', '${message[8]}', 
                 '${message[9]}', '${message[10]}', '${message[11]}','${message[12]}', '${message[13]}', '${message[14]}', '${message[15]}',
                 '${message[16]}', '${message[17]}', '${message[18]}', '${message[19]}', '${message[20]}', '${message[21]}', '${message[22]}', '${message[23]}', 

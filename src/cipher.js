@@ -94,7 +94,8 @@ class Cipher {
   };
 
   encrypter(sentence, level = 1, keyList) {
-    let starter = sentence;
+    if (sentence !== null) {
+      let starter = sentence;
     let final = "";
     for (let i = level; i > 0; i--) {
       for (let letter of starter) {
@@ -111,23 +112,28 @@ class Cipher {
     }
     console.log(`\n\n${starter}\n\n${keyList}\n\n${sentence}`)
     return [starter, ...keyList];
+    }
+    return [null]
   }
 
   decrypter(sentence, level = 1, keyList) {
-    let starter = sentence;
-    let final = "";
-    for (let i = level; i > 0; i--) {
-      for (let i = 0; i < starter.length; i += 3) {
-        for (let key of Object.keys(this.encryptionKey)) {
-          if (keyList[this.encryptionKey[key]] === starter.slice(i, i + 3)) {
-            final += key;
+    if (sentence !== null) {
+      let starter = sentence;
+      let final = "";
+      for (let i = level; i > 0; i--) {
+        for (let i = 0; i < starter.length; i += 3) {
+          for (let key of Object.keys(this.encryptionKey)) {
+            if (keyList[this.encryptionKey[key]] === starter.slice(i, i + 3)) {
+              final += key;
+            }
           }
         }
+        starter = final;
+        final = "";
       }
-      starter = final;
-      final = "";
+      return starter;
     }
-    return starter;
+    return [null];
   }
 }
 
