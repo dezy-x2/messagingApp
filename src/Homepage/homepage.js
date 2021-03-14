@@ -90,6 +90,7 @@ class Homepage extends React.Component {
             <div>
                 <body className="homepage-head">
                     <h1>Welcome to your homepage {this.state.user.username}</h1>
+                    <button className="refresher">Refresh</button>
                     <div className="messageContainer">
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {

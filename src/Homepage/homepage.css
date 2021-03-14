@@ -96,3 +96,15 @@
     border-color: gold;
     overflow-y:auto;
 }
+.refresher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 25%;
+    left: 78%;
+    margin: -30px 0 0 -30px;
+    border-radius: 50%;
+}
