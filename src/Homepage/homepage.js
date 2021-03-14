@@ -94,20 +94,20 @@ class Homepage extends React.Component {
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
                                 console.log(item)
-                                if (item) {
+                                if (item[0]) {
                                     return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
                                 } 
-                                return <li>hello sire</li>;
+                                return;
                             })}
                         </ul>
 
                         <ul className="inMessageDisplay" >
                             {this.state.user.messages.inMessages.map(item => {
                                 // console.log(item, "HELLOOOOOOOOO");
-                                if (item) {
+                                if (item[0]) {
                                     return <li> {item[0]}: {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
                                 }
-                                return;
+                                return <li>Admin: Hi, welcome to Secure Messaging™</li>;
                             })}
                         </ul>
                     </div>
