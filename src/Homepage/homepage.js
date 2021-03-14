@@ -83,14 +83,14 @@ class Homepage extends React.Component {
         this.setState({user: JSON.parse(user)});
     };
 
-    refresher = setInterval(this.refreshMessages, 30000);
+    refresher = setInterval(this.refreshMessages, 60000);
 
     render() {
         return (
             <div>
                 <body className="homepage-head">
                     <h1>Welcome to your homepage {this.state.user.username}</h1>
-                    <button className="refresher">Refresh</button>
+                    <button className="refresher" onClick={this.refreshMessages} >Refresh</button>
                     <div className="messageContainer">
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
