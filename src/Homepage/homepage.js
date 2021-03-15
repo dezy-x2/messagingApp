@@ -26,7 +26,7 @@ class Homepage extends React.Component {
     }
 
     handleSendPress = () => {
-        console.log("Hello")
+        // console.log("Hello")
         if (this.state.message !== "" && this.state.recepient !== "") {
             this.sendToApi();
         } else {
@@ -51,7 +51,7 @@ class Homepage extends React.Component {
         });
         const status = await response.status;
         const message = await response.text();
-        // console.log(JSON.parse(message));
+        console.log(message, "Daniel look here");
         this.setState({user: JSON.parse(message)});
         this.handleApiResp(status);
     }
@@ -94,7 +94,7 @@ class Homepage extends React.Component {
                     <div className="messageContainer">
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
-                                console.log(item)
+                                // console.log(item)
                                 if (item[0]) {
                                     return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
                                 } 
