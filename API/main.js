@@ -202,7 +202,7 @@ app.post("/messages/send", async(req, res, next) => {
         for (let user of dbres.rows) {
             if (user.id == id) {
                 try {
-                const allUpdate = await client.query(`UPDATE messages SET out_messages = array_cat(out_messages, ARRAY['${user.username}', '${message[0]}', 
+                const allUpdate = await client.query(`UPDATE messages SET out_messages = array_cat(out_messages, ARRAY['${recepient}', '${message[0]}', 
                 '${message[1]}', '${message[2]}','${message[3]}', '${message[4]}', '${message[5]}', '${message[6]}', '${message[7]}', '${message[8]}', 
                 '${message[9]}', '${message[10]}', '${message[11]}','${message[12]}', '${message[13]}', '${message[14]}', '${message[15]}',
                 '${message[16]}', '${message[17]}', '${message[18]}', '${message[19]}', '${message[20]}', '${message[21]}', '${message[22]}', '${message[23]}', 
@@ -251,7 +251,7 @@ app.post("/messages/send", async(req, res, next) => {
                     // console.log(message[1]);
                     // console.log(JSON.parse(message[1]))
                     // console.log(message[2]);
-                    const update = await client.query(`UPDATE messages SET out_messages = array_cat(out_messages, ARRAY['${user.username}', '${message[0]}', 
+                    const update = await client.query(`UPDATE messages SET out_messages = array_cat(out_messages, ARRAY['${recepient}', '${message[0]}', 
                     '${message[1]}', '${message[2]}','${message[3]}', '${message[4]}', '${message[5]}', '${message[6]}', '${message[7]}', '${message[8]}', 
                     '${message[9]}', '${message[10]}', '${message[11]}','${message[12]}', '${message[13]}', '${message[14]}', '${message[15]}',
                     '${message[16]}', '${message[17]}', '${message[18]}', '${message[19]}', '${message[20]}', '${message[21]}', '${message[22]}', '${message[23]}', 

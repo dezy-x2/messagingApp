@@ -96,7 +96,7 @@ class Homepage extends React.Component {
                             {this.state.user.messages.outMessages.map(item => {
                                 // console.log(item)
                                 if (item[0]) {
-                                    return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
+                                    return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} - to: {item[0]} </li>
                                 } 
                                 return;
                             })}
