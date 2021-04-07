@@ -1,10 +1,19 @@
+html {
+  font-size: 16px;
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
+  position: absolute; 
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .App-header {
-  min-height: 100vh;
+  min-height: 12vh;
   display: flex;
   /* flex-direction: column;
   align-items: center; */
@@ -12,6 +21,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   position: relative;
+  border: 1px green solid;
 }
 
 .app-title {
@@ -30,7 +40,8 @@
   position: absolute;
   top: 50%;
   left: 47.4%;
-  margin: -10px 0 0 -40px;
+  /* margin: -10px 0 0 -40px; */
+  margin: 0;
 }
 
 #sign-up {
@@ -42,10 +53,10 @@
   position: absolute;
   top: 50%;
   left: 52.6%;
-  margin: -10px 0 0 -40px;
+  /* margin: -10px 0 0 -40px; */
 }
 
-.message {
+/* .message {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,4 +66,19 @@
   top: 60%;
   left: 50%;
   margin: -10px 0 0 -75px;
+} */
+
+#acc-butons {
+  display: flex;
+  /* position: relative; */
+  width: 600px;
+  height: 200px;
+  border: 1px red solid;
+  justify-content: space-between;
+}
+
+.front-page {
+  display: flex;
+  border: 1px blue solid;
+  /* justify-content: center; */
 }

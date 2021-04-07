@@ -41,13 +41,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {!this.state.completed && <header className="App-header">
-          <h1 className="app-title">Secure Messaging</h1>
-          <button className="log-in" onClick={this.logInHandler}>Log In</button>
-          <button className="log-in" id="sign-up" onClick={this.signUpHandler}>Sign Up</button>
-          {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
-          {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
-        </header>}
+        {!this.state.completed && <div className="front-page" > 
+          <header className="App-header"> <h1 className="app-title">Secure Messaging</h1> </header>
+          <div id="acc-butons" >
+            <button className="log-in" onClick={this.logInHandler}>Log In</button>
+            <button className="log-in" id="sign-up" onClick={this.signUpHandler}>Sign Up</button>
+            {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
+            {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
+          </div> 
+          </div>}
         {this.state.completed && <HomePage userId={this.state.userId} completedFormHandler={this.completedFormHandler} />}
       </div>
     );
