@@ -1,3 +1,7 @@
+html {
+    font-size: 16;
+}
+
 .username {
     background-color: black;
 }
@@ -6,27 +10,24 @@
 }
 
 .submit {
-    display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20px;
-  width: 70px;
-  position: absolute;
-  top: 62.5%;
-  left: 50%;
-  margin: -10px 0 0 -35px;
+    margin: 2rem 0;
+    max-width: 4rem;
+    margin: auto;
 }
 
 .form {
     display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20px;
-  width: 150px;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  margin: -10px 0 0 -75px;
+    max-height: 1.5rem;
+    justify-content: center;
+}
+
+.signup-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    border: 1px brown solid;
+    margin: 2rem 0
 }
 
 input[type="text"] {

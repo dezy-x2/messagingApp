@@ -12,73 +12,34 @@ html {
   min-height: 100vh;
 }
 
-.App-header {
-  min-height: 12vh;
+.front-page {
+  border: 1px red solid;
   display: flex;
-  /* flex-direction: column;
-  align-items: center; */
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  position: relative;
-  border: 1px green solid;
+  width: 100%;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
-.app-title {
-  position: fixed;
+#acc-buttons {
+  border: 1px green solid;
   display: flex;
   justify-content: center;
+  margin-top: 20%;
 }
 
 .log-in {
-  /* min-height: 100vh; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20px;
-  width: 80px;
-  position: absolute;
-  top: 50%;
-  left: 47.4%;
-  /* margin: -10px 0 0 -40px; */
-  margin: 0;
+  max-height: 1.5rem;
+  margin: 0 1rem;
 }
 
-#sign-up {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20px;
-  width: 80px;
-  position: absolute;
-  top: 50%;
-  left: 52.6%;
-  /* margin: -10px 0 0 -40px; */
+.app-title {
+  color: white;
+  font-size: 3.5rem;
+
 }
 
-/* .message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20px;
-  width: 150px;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  margin: -10px 0 0 -75px;
-} */
-
-#acc-butons {
-  display: flex;
-  /* position: relative; */
-  width: 600px;
-  height: 200px;
-  border: 1px red solid;
-  justify-content: space-between;
-}
-
-.front-page {
-  display: flex;
-  border: 1px blue solid;
-  /* justify-content: center; */
+@media only screen and (max-width: 500px) {
+  .app-title {
+    font-size: 2rem;
+  }
 }

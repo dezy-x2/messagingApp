@@ -50,13 +50,13 @@ class LogIn extends React.Component {
             this.setState({username: "", password: ""});
             this.props.completedFormHandler(true);
         } else {
-            this.props.completedFormHandler(false)
+            this.props.completedFormHandler(false);
         }
     }
 
     render() {
         return (
-            <div>
+            <div className="login-page" >
                 <form className="form" >
                     <input type="text" value={this.state.username} onChange={this.handleUsernameChange} placeholder="Username" className="username" />
                     <input type="text" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password" className="password" />
