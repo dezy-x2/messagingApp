@@ -87,11 +87,11 @@ class Homepage extends React.Component {
 
     render() {
         return (
-            <div>
-                <body className="homepage-head">
-                    <h1>Welcome to your homepage {this.state.user.username}</h1>
-                    <button className="refresher" onClick={this.refreshMessages} >Refresh</button>
-                    <div className="messageContainer">
+            <div className="homepage" >
+                <header className="homepage-head"> <h1>Welcome to your homepage {this.state.user.username}</h1> </header>
+                <button className="refresher" onClick={this.refreshMessages} >Refresh</button>
+                <div className="messageContainer">
+                    <div className="outMessageContainer" >
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
                                 // console.log(item)
@@ -101,7 +101,8 @@ class Homepage extends React.Component {
                                 return;
                             })}
                         </ul>
-
+                    </div>
+                    <div className="inMessageContainer">
                         <ul className="inMessageDisplay" >
                             {this.state.user.messages.inMessages.map(item => {
                                 // console.log(item, "HELLOOOOOOOOO");
@@ -112,12 +113,14 @@ class Homepage extends React.Component {
                             })}
                         </ul>
                     </div>
+                </div>
+                <div className="text-area">
                     <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
                     <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>
                     <button className="send" onClick={this.handleSendPress} >Send</button>
-                    {<p className="error"> {this.state.error} </p>}
-                </body>
-            </div>
+                </div>
+                {<p className="error"> {this.state.error} </p>}
+        </div>
         )
     }
 }

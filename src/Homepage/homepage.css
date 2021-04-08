@@ -1,110 +1,39 @@
+html {
+    font-size: 16px;
+}
+
 .homepage-head {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    /* flex-direction: column;
-    align-items: center; */
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    /* color: white; */
-    position: relative;
+
+    border: 1px red solid;
 }
 
 .textbox {
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    width: 900px;
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    margin: -75px 0 0 -450px;
+
 }
 
 .send {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 25px;
-    width: 40px;
-    position: absolute;
-    top: 84%;
-    left: 75%;
-    margin: -12.5px 0 0 -20px;
+
 }
 
 .recepient {
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 25px;
-    width: 120px;
-    position: absolute;
-    top: 84%;
-    left: 22%;
-    margin: -12.5px 0 0 -60px;
+
 }
 
 .error {
-    color: darkred;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 25px;
-    width: 1000px;
-    position: absolute;
-    top: 13%;
-    left: 50%;
-    margin: -12.5px 0 0 -500px;
+
 }
 
 .inMessageDisplay {
-    color: #00c;
-    top: 50%;
-    width:500px; 
-    left:0%; 
-    /* bottom: 0; */
-    position:absolute;
-    /* float: left; */
+    border: 1px yellow solid;
 }
 
 .outMessageDisplay {
-    color: #060;
-    top: 50%;
-    width:500px; 
-    right:0%; 
-    /* bottom: 0; */
-    position:absolute;
+    border: 1px blue solid;
 }
 
 .messageContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 550px;
-    width: 1000px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -275px 0 0 -500px;
-    border-style: dashed;
-    border-color: gold;
-    overflow-y:auto;
+    border: 1px green solid;
 }
 .refresher {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    width: 60px;
-    position: absolute;
-    top: 25%;
-    left: 78%;
-    margin: -30px 0 0 -30px;
-    border-radius: 50%;
+
 }
