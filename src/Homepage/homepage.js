@@ -89,14 +89,13 @@ class Homepage extends React.Component {
         return (
             <div className="homepage" >
                 <header className="homepage-head"> <h1>Welcome to your homepage {this.state.user.username}</h1> </header>
-                <button className="refresher" onClick={this.refreshMessages} >Refresh</button>
                 <div className="messageContainer">
                     <div className="outMessageContainer" >
                         <ul className="outMessageDisplay">
                             {this.state.user.messages.outMessages.map(item => {
                                 // console.log(item)
                                 if (item[0]) {
-                                    return <li> {encrypter.decrypter(item[1], 2, item.slice(2))} - to: {item[0]} </li>
+                                    return <li className="out-message" > {encrypter.decrypter(item[1], 2, item.slice(2))} - to: {item[0]} </li>
                                 } 
                                 return;
                             })}
@@ -107,9 +106,9 @@ class Homepage extends React.Component {
                             {this.state.user.messages.inMessages.map(item => {
                                 // console.log(item, "HELLOOOOOOOOO");
                                 if (item[0]) {
-                                    return <li> {item[0]}: {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
+                                    return <li className="in-message" > {item[0]}: {encrypter.decrypter(item[1], 2, item.slice(2))} </li>
                                 }
-                                return <li>Admin: Hi, welcome to Secure Messaging™</li>;
+                                return <li className="in-message" >Admin: Hi, welcome to Secure Messaging™</li>;
                             })}
                         </ul>
                     </div>
@@ -117,7 +116,10 @@ class Homepage extends React.Component {
                 <div className="text-area">
                     <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
                     <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>
-                    <button className="send" onClick={this.handleSendPress} >Send</button>
+                    <div className="ref-send">
+                        <button className="refresher" onClick={this.refreshMessages} >Refresh</button>
+                        <button className="send" onClick={this.handleSendPress} >Send</button>
+                    </div>
                 </div>
                 {<p className="error"> {this.state.error} </p>}
         </div>

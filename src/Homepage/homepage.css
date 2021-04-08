@@ -2,6 +2,10 @@ html {
     font-size: 16px;
 }
 
+li {
+    list-style: none;
+}
+
 .homepage {
     display: flex;
     border: 1px purple solid;
@@ -9,24 +13,35 @@ html {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    height: 100vh;
 }
 
 .homepage-head {
+    color: white;
+    font-size: 2rem;
     border: 1px red solid;
 }
 
 .textbox {
-    min-width: 40rem;
-    height: 100%;
+    background-color: black;
+    color: white;
+    width: 35%;
+    height: 97%;
     flex-shrink: 2;
+    resize: none !important;
 }
 
 .send {
     max-height: 1.4rem;
+    color: white;
+    background-color: black;
+    cursor: pointer;
 }
 
 .recepient {
     max-height: 1.4rem;
+    color: white;
+    background-color: black;
 }
 
 .error {
@@ -48,7 +63,8 @@ html {
 .messageContainer {
     display: flex;
     flex-direction: row-reverse;
-    min-height: 30%;
+    min-height: 35%;
+    min-width: 50%;
     border: 1px green solid;
 }
 
@@ -56,8 +72,10 @@ html {
     display: flex;
     margin: 0;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: center;
+    flex-wrap: wrap !important;
     height: 13rem;
+    min-width: 100%;
     border: 1px silver solid;
 }
 
@@ -65,4 +83,48 @@ html {
     max-width: 3.8rem;
     min-height: 3.8rem;
     border-radius: 3rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    transition: all 0.8s ease;
+}
+
+.refresher:hover {
+    transform: rotateZ(360deg);
+}
+
+.ref-send {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+.out-message {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #875FCE
+}
+
+.in-message {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #A6CE5F
+}
+
+@media only screen and (max-width: 835px) {
+    .textbox {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .homepage-head {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .in-message,
+    .out-message {
+        font-size: 1rem;
+    }
 }
