@@ -114,8 +114,10 @@ class Homepage extends React.Component {
                     </div>
                 </div>
                 <div className="text-area">
-                    <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
-                    <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>
+                    <div className="text-boxes">
+                        <input type="text" className="recepient" value={this.state.recepient} onChange={this.handleRecepientChange} placeholder="Recepient name" />
+                        <textarea className="textbox" placeholder="Put your message here" onChange={this.handleMessageChange} value={this.state.message} ></textarea>
+                    </div>
                     <div className="ref-send">
                         <button className="refresher" onClick={this.refreshMessages} >Refresh</button>
                         <button className="send" onClick={this.handleSendPress} >Send</button>
