@@ -11,9 +11,9 @@ li {
     border: 1px purple solid;
     width: 100%;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between !important;
     align-items: center;
-    height: 100%;
+    height: 100vh;
 }
 
 .homepage-head {
@@ -53,6 +53,7 @@ li {
 .inMessageContainer {
     display: flex;
     width: 50%;
+    height: 30rem;
     border: 1px yellow solid;
     overflow: scroll;
 }
@@ -60,6 +61,7 @@ li {
 .outMessageContainer {
     display: flex;
     width: 50%;
+    height: 30rem;
     border: 1px blue solid;
     overflow: scroll;
 }
@@ -67,9 +69,10 @@ li {
 .messageContainer {
     display: flex;
     flex-direction: row-reverse;
-    min-height: 35%;
+    height: 35%;
     min-width: 50%;
     border: 1px green solid;
+    overflow: scroll;
 }
 
 .text-area {
