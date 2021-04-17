@@ -144,12 +144,12 @@ app.get("/acc/fetch/:username/:password", async (req, res, next) => {
                 });
             } catch(e) {
                 console.log(e);
-                res.status(500).send();
+                res.status(500).send("Username or password Error"); //must be changed back to 500!!!!
             }
         }
     } catch(e) {
         console.log(e);
-        res.status(500).send();
+        res.status(500).send("Username or password Error"); //must be changed back to 500!!!!
     }
     
 })

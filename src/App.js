@@ -11,7 +11,7 @@ class App extends React.Component {
       logIn: false,
       signUp: false,
       completed: null,
-      message: "You're in!",
+      message: "",
       userId: null,
     }
     this.logInHandler = this.logInHandler.bind(this);
@@ -28,9 +28,11 @@ class App extends React.Component {
     this.state.signUp ? this.setState({signUp: false}) : this.setState({signUp: true});
   }
 
-  completedFormHandler = (bool) => {
+  completedFormHandler = (bool, err="There is an error with your username or password") => {
     if (bool) {
       this.setState({completed: true, signUp: false, logIn: false})
+    } else if (bool === false) {
+      this.setState({message: err});
     }
   }
 
@@ -51,11 +53,12 @@ class App extends React.Component {
             {this.state.logIn && <LogIn completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
             {this.state.signUp && <SignUp completedFormHandler={this.completedFormHandler} getUserId={this.getUserId} />}
           </div>
+          <p className="message" >{this.state.message}</p>
           </div>}
         {this.state.completed && <HomePage userId={this.state.userId} completedFormHandler={this.completedFormHandler} />}
       </div>
     );
   }
 }
-//<p className="message" >{this.state.message}</p>
+//
 export default App;

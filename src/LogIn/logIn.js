@@ -34,14 +34,26 @@ class LogIn extends React.Component {
     async sendToApi() {
         const username = this.state.username;
         const password = this.state.password;
-        const response = await fetch(`http://localhost:9000/acc/fetch/${username}/${password}`);
-        const status = await response.status;
-        const userId = await response.text();
-        // console.log(JSON.parse(userId));
-        // console.log(JSON.parse(userId.id));
-        this.props.getUserId(JSON.parse(userId));
-        console.log(status, "HELLLOOOOO");
-        this.handleApiResponse(status);
+        try {
+            console.log("Helo!!!")
+            const response = await fetch(`http://localhost:9000/acc/fetch/${username}/${password}`);
+            console.log("anything??")
+            if (!response.ok) {
+                throw new Error(response);
+            }
+            const status = await response.status;
+            const userId = await response.text();
+            this.props.getUserId(JSON.parse(userId));
+            console.log(userId, status);
+            console.log(status, "HELLLOOOOO");
+            this.handleApiResponse(status);
+        } catch (e) {
+            console.log("WRONG");
+            const statusF = await e.status;
+            console.log(statusF);
+            this.props.completedFormHandler(false);
+        }
+        
     }
 
     handleApiResponse(status) {
