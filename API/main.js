@@ -44,11 +44,24 @@ app.get("/", async (req, res, next) => {
     
 });
 
+async function userExist(username) {
+    const findUser = await client.query(`SELECT * FROM users WHERE username = '${username}'`);
+    console.log(findUser);
+    if(findUser.rows.length != 0) {
+        return true;
+    };
+    return false;
+}
+
 app.post("/acc/crt", async (req, res, next) => {
     // console.log("got here")
     let username = req.body.username;
     let password = req.body.password;
     let id = await generateId();
+
+    if(userExist(username)) {
+        return res.status(400).send();
+    }
 
     try{
         // console.log(username, password, id)

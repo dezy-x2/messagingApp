@@ -33,17 +33,26 @@ class SignUp extends React.Component {
     }
 
     async sendToApi() {
-        const response = await fetch("http://localhost:9000/acc/crt", {
+        try {
+            const response = await fetch("http://localhost:9000/acc/crt", {
             method: "POST",
             body: JSON.stringify({"username": this.state.username, "password": this.state.password}), 
             headers: {
                 "Content-Type": "application/json"
             },
-        });
-        const status = await response.status;
-        const userId = await response.text();
-        this.props.getUserId(JSON.parse(userId));
-        this.handleApiResponse(status);
+            });
+            if(!response.ok) {
+                throw new Error(response);
+            }
+            const status = await response.status;
+            const userId = await response.text();
+            this.props.getUserId(JSON.parse(userId));
+            this.handleApiResponse(status);
+        } catch (e) {
+            console.log("Failed");
+            this.props.completedFormHandler(false, "Username all ready in use");
+        }
+        
 
     }
 
