@@ -46,7 +46,7 @@ app.get("/", async (req, res, next) => {
 
 async function userExist(username) {
     const findUser = await client.query(`SELECT * FROM users WHERE username = '${username}'`);
-    console.log(findUser);
+    // console.log(findUser);
     if(findUser.rows.length != 0) {
         return true;
     };
@@ -206,6 +206,13 @@ app.post("/messages/send", async(req, res, next) => {
     
     const recepient = req.body.recepient;
     const message = req.body.message;
+    const exists = await userExist(recepient);
+    if(!exists) {
+        console.log(recepient);
+        console.log("what")
+        return res.status(400).send();
+    }
+
     // console.log(message);d
     let completed = "";
     var sender = await refresher(id);

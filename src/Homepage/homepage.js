@@ -41,25 +41,32 @@ class Homepage extends React.Component {
         // console.log(key);
         let encMessage = encrypter.encrypter(this.state.message, 2, JSON.parse(key))
         // console.log(encMessage);
-
-        const response = await fetch("http://localhost:9000/messages/send", {
+        try {
+            const response = await fetch("http://localhost:9000/messages/send", {
             method: "POST",
             body: JSON.stringify({"id": this.props.userId.id, "message": encMessage, "recepient": this.state.recepient}), 
             headers: {
                 "Content-Type": "application/json"
             },
         });
+        if(!response.ok) {
+            throw new Error(response);
+        }
         const status = await response.status;
         const message = await response.text();
         console.log(message, "Daniel look here");
         this.setState({user: JSON.parse(message)});
         this.handleApiResp(status);
+        } catch (e) {
+            this.setState({error: "ERROR: That user does not exist!"})
+        }
+        
     }
 
     handleApiResp = (status) => {
         if (status === 200) {
             this.refreshMessages();
-            this.setState({message: ""});
+            this.setState({message: "", error: ""});
         } else if (status === 400) {
             this.setState({error: `ERROR: That user does not exist`})
         } else if (status === 500) {
@@ -123,7 +130,7 @@ class Homepage extends React.Component {
                         <button className="send" onClick={this.handleSendPress} >Send</button>
                     </div>
                 </div>
-                {<p className="error"> {this.state.error} </p>}
+                <p className="error"> {this.state.error} </p>
         </div>
         )
     }
