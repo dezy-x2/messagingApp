@@ -36,7 +36,7 @@ class LogIn extends React.Component {
         const password = this.state.password;
         try {
             console.log("Helo!!!")
-            const response = await fetch(`http://localhost:9000/acc/fetch/${username}/${password}`);
+            const response = await fetch(`http://localhost:9000/acc/fetch/${username.trim()}/${password.trim()}`);
             console.log("anything??")
             if (!response.ok) {
                 throw new Error(response);

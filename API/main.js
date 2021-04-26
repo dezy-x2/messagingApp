@@ -58,8 +58,9 @@ app.post("/acc/crt", async (req, res, next) => {
     let username = req.body.username;
     let password = req.body.password;
     let id = await generateId();
+    const realOrNot = await userExist(username);
 
-    if(userExist(username)) {
+    if(realOrNot) {
         return res.status(400).send();
     }
 

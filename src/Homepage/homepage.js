@@ -44,7 +44,7 @@ class Homepage extends React.Component {
         try {
             const response = await fetch("http://localhost:9000/messages/send", {
             method: "POST",
-            body: JSON.stringify({"id": this.props.userId.id, "message": encMessage, "recepient": this.state.recepient}), 
+            body: JSON.stringify({"id": this.props.userId.id, "message": encMessage, "recepient": this.state.recepient.trim()}), 
             headers: {
                 "Content-Type": "application/json"
             },

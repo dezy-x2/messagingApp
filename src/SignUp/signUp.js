@@ -36,7 +36,7 @@ class SignUp extends React.Component {
         try {
             const response = await fetch("http://localhost:9000/acc/crt", {
             method: "POST",
-            body: JSON.stringify({"username": this.state.username, "password": this.state.password}), 
+            body: JSON.stringify({"username": this.state.username.trim(), "password": this.state.password.trim()}), 
             headers: {
                 "Content-Type": "application/json"
             },
