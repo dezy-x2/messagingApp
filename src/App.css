@@ -13,7 +13,7 @@ html {
 }
 
 .front-page {
-  border: 1px red solid;
+  /* border: 1px red solid; */
   display: flex;
   width: 100%;
   justify-content: flex-start;
@@ -21,7 +21,7 @@ html {
 }
 
 #acc-buttons {
-  border: 1px green solid;
+  /* border: 1px green solid; */
   display: flex;
   justify-content: center;
   margin-top: 20%;
