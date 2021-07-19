@@ -39,10 +39,11 @@ class App extends React.Component {
   getUserId = (id) => {
     this.setState({userId: id});
   };
-
+//need to get line 46 working
   render() {
     return (
-      <div className="App">
+      <div className="App"> 
+        <img src="./246-2462945_question-mark-png-hd-image-transparent-png.jpg" alt="question mark"></img> 
         {!this.state.completed && <div className="front-page" > 
           <header className="App-header"> <h1 className="app-title">Secure Messaging</h1> </header>
           <div id="acc-buttons" >
